@@ -1,0 +1,27 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"A File Icon",
+		"ApacheConf",
+		"ayu",
+		"ColorHints",
+		"FileManager",
+		"gruvbox",
+		"Laravel Blade Highlighter",
+		"LSP",
+		"LSP-intelephense",
+		"LSP-json",
+		"LSP-tailwindcss",
+		"Package Control",
+		"Predawn",
+		"Sass",
+		"Tailwind CSS",
+		"Theme - Afterglow",
+		"Vue Syntax Highlight",
+		"Vuejs Snippets",
+	],
+}

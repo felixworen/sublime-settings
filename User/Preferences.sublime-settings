@@ -1,0 +1,18 @@
+{
+	"bold_folder_labels": true,
+	"color_scheme": "Packages/ayu/ayu-mirage.sublime-color-scheme",
+	"drag_text": false,
+	"ensure_newline_at_eof_on_save": true,
+	"font_size": 10,
+	"ignored_packages":
+	[
+		"Vintage",
+	],
+	"rulers":
+	[
+		120
+	],
+	"theme": "ayu-mirage.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+}

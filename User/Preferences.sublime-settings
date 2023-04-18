@@ -3,7 +3,7 @@
 	"color_scheme": "Packages/ayu/ayu-mirage.sublime-color-scheme",
 	"drag_text": false,
 	"ensure_newline_at_eof_on_save": true,
-	"font_size": 10,
+	"font_size": 9,
 	"ignored_packages":
 	[
 		"Vintage",
@@ -16,4 +16,6 @@
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": "not_on_caret",
 	"tab_size": 2,
+	"dark_theme": "ayu-mirage.sublime-theme",
+	"light_theme": "ayu-mirage.sublime-theme",
 }

@@ -1,6 +1,6 @@
 {
 	"bold_folder_labels": true,
-	"color_scheme": "Packages/ayu/ayu-mirage.sublime-color-scheme",
+	"color_scheme": "ayu-mirage.sublime-color-scheme",
 	"drag_text": false,
 	"ensure_newline_at_eof_on_save": true,
 	"font_size": 9,

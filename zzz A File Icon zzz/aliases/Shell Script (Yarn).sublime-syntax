@@ -4,7 +4,7 @@ name: Shell Script (Yarn)
 scope: source.shell.yarn
 hidden: true
 file_extensions:
-  - .yarnrc
+  - yarnw
 contexts:
   main:
     - include: scope:source.shell

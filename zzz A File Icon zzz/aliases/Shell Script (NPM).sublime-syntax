@@ -5,7 +5,6 @@ scope: source.shell.npm
 hidden: true
 file_extensions:
   - .npmignore
-  - .npmrc
 contexts:
   main:
     - include: scope:source.shell

@@ -5,6 +5,8 @@ scope: source.js.postcss
 hidden: true
 file_extensions:
   - postcss.config.js
+  - postcss.config.cjs
+  - postcss.config.mjs
 contexts:
   main:
     - include: scope:source.js

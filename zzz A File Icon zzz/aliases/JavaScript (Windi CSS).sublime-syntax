@@ -5,6 +5,8 @@ scope: source.js.windi
 hidden: true
 file_extensions:
   - windi.config.js
+  - windi.config.cjs
+  - windi.config.mjs
 contexts:
   main:
     - include: scope:source.js

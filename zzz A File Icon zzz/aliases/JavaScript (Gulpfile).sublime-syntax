@@ -5,7 +5,11 @@ scope: source.js.gulpfile
 hidden: true
 file_extensions:
   - gulpfile.js
+  - gulpfile.cjs
+  - gulpfile.mjs
   - gulpfile.babel.js
+  - gulpfile.babel.cjs
+  - gulpfile.babel.mjs
 contexts:
   main:
     - include: scope:source.js

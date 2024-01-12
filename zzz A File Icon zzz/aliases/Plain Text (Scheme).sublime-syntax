@@ -5,7 +5,6 @@ scope: source.scheme
 hidden: true
 file_extensions:
   - ms
-  - rkt
   - sc
   - sch
   - scm

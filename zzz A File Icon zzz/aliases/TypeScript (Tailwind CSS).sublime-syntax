@@ -5,6 +5,8 @@ scope: source.ts.tailwind
 hidden: true
 file_extensions:
   - tailwind.config.ts
+  - tailwind.config.cts
+  - tailwind.config.mts
 contexts:
   main:
     - include: scope:source.ts

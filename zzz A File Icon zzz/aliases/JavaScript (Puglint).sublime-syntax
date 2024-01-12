@@ -5,6 +5,8 @@ scope: source.js.puglint
 hidden: true
 file_extensions:
   - .pug-lintrc.js
+  - .pug-lintrc.cjs
+  - .pug-lintrc.mjs
 contexts:
   main:
     - include: scope:source.js

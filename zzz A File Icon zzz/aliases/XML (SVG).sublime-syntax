@@ -7,5 +7,5 @@ file_extensions:
   - svg
 contexts:
   main:
-    - include: scope:text.xml
+    - include: scope:text.html.basic
       apply_prototype: true

@@ -174,10 +174,10 @@ class JsPrettierCommand(sublime_plugin.TextCommand):
                     source_file_dir, st_project_path, additional_cli_arg_config)
                 if additional_cli_arg_config and os.path.exists(additional_cli_arg_config):
                     log_debug(view, "Using Prettier config file defined in additional_cli_args '{0}'"
-                              .format(additional_cli_arg_config), True)
+                              .format(additional_cli_arg_config))
                     return additional_cli_arg_config
                 log_warn("Could not find Prettier config file defined in additional_cli_args '{0}'"
-                         .format(str(additional_cli_arg_config)), True)
+                         .format(str(additional_cli_arg_config)))
                 return None
 
         #
@@ -187,7 +187,7 @@ class JsPrettierCommand(sublime_plugin.TextCommand):
             log_debug(view, "Found Prettier config file '{0}'".format(resolved_prettier_config))
             return resolved_prettier_config
 
-        log_debug(view, "Could not resolve Prettier config file, will use options defined in Sublime Text.", True)
+        log_debug(view, "Could not resolve Prettier config file, will use options defined in Sublime Text.")
 
         return None
 
@@ -228,6 +228,7 @@ class JsPrettierCommand(sublime_plugin.TextCommand):
 
         #
         # cd to the active sublime text project dir:
+        log_debug(view, "Changing working directory to '{0}'".format(st_project_path), True)
         os.chdir(st_project_path)
 
         #
@@ -273,6 +274,14 @@ class JsPrettierCommand(sublime_plugin.TextCommand):
             view, parsed_additional_cli_args, prettier_config_path,
             has_custom_config_defined, has_no_config_defined,
             prettier_ignore_filepath, source_file_path)
+
+        #
+        # change to appropriate working directory so plugins can be detected (#278)
+        if st_project_path in prettier_cli_path and 'node_modules' in prettier_cli_path:
+            working_directory_path = os.path.dirname(prettier_cli_path[:prettier_cli_path.index('node_modules')])
+            if working_directory_path != st_project_path:
+                log_debug(view, "Changing working directory to '{0}'".format(working_directory_path))
+                os.chdir(working_directory_path)
 
         #
         # Format entire file:
@@ -461,6 +470,8 @@ class JsPrettierCommand(sublime_plugin.TextCommand):
             return True
         if self.is_less(view) is True:
             return True
+        if self.is_scss(view) is True:
+            return True
         if self.is_css(view) is True:
             return True
         if self.is_angular_html(view) is True:
@@ -558,6 +569,10 @@ class JsPrettierCommand(sublime_plugin.TextCommand):
                     prettier_options.append(cli_option_name)
                     prettier_options.append('less')
                     continue
+                elif self.is_scss(view):
+                    prettier_options.append(cli_option_name)
+                    prettier_options.append('scss')
+                    continue
                 elif self.is_css(view):
                     prettier_options.append(cli_option_name)
                     prettier_options.append('css')
@@ -624,9 +639,9 @@ class JsPrettierCommand(sublime_plugin.TextCommand):
         prettier_options.append(source_file_path)
 
         if debug_enabled(view):
-            if not parsed_additional_cli_args.count('--loglevel') > 0:
+            if not parsed_additional_cli_args.count('--log-level') > 0:
                 # set prettier's log level to debug, when the plug-in's debug setting is enabled:
-                prettier_options.append('--loglevel')
+                prettier_options.append('--log-level')
                 prettier_options.append('debug')
 
         # Append any additional specified arguments:
@@ -671,6 +686,16 @@ class JsPrettierCommand(sublime_plugin.TextCommand):
         return False
 
     @staticmethod
+    def is_scss(view):
+        filename = view.file_name()
+        if not filename:
+            return False
+        scopename = view.scope_name(view.sel()[0].b)
+        if scopename.startswith('source.scss') or filename.endswith('.scss'):
+            return True
+        return False
+
+    @staticmethod
     def is_css(view):
         filename = view.file_name()
         if not filename:
@@ -678,8 +703,6 @@ class JsPrettierCommand(sublime_plugin.TextCommand):
         scopename = view.scope_name(view.sel()[0].b)
         if scopename.startswith('source.css') or filename.endswith('.css') \
                 or contains('meta.selector.css', scopename) or contains('source.css.embedded.html', scopename):
-            return True
-        if scopename.startswith('source.scss') or filename.endswith('.scss'):
             return True
         return False
 
